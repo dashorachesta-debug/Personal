@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Chesta Dashora | Product & Program Manager</title>
+
+  <meta
+    name="description"
+    content="Portfolio of Chesta Dashora — Product & Program professional working across Digital Transformation, Fintech, Banking, Business Analysis and user-centric product experiences."
+  />
+
+  <style>
+    /* ===============================
+       GLOBAL
+    =============================== */
+
+    :root {
+      --background: #f8f9fc;
+      --surface: #ffffff;
+      --surface-soft: #f1f3f9;
+
+      --text: #111827;
+      --muted: #667085;
+
+      --border: #e5e7eb;
+
+      --primary: #5b5cf0;
+      --primary-dark: #4338ca;
+      --purple: #7c3aed;
+
+      --primary-soft: #eef2ff;
+
+      --max-width: 1180px;
+
+      --shadow:
+        0 20px 60px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 90% 5%,
+          rgba(124, 58, 237, 0.08),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 10% 0%,
+          rgba(91, 92, 240, 0.07),
+          transparent 28%
+        ),
+        var(--background);
+
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: min(calc(100% - 40px), var(--max-width));
+      margin: auto;
+    }
+
+    /* ===============================
+       NAVBAR
+    =============================== */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(248, 249, 252, 0.85);
+
+      backdrop-filter: blur(16px);
+
+      border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    }
+
+    nav {
+      height: 72px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      font-weight: 800;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 14px;
+
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--purple)
+      );
+
+      color: white;
+
+      font-size: 14px;
+
+      box-shadow:
+        0 10px 25px rgba(91, 92, 240, 0.3);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* ===============================
+       BUTTONS
+    =============================== */
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 13px 20px;
+
+      border-radius: 100px;
+
+      font-size: 14px;
+      font-weight: 700;
+
+      transition: 0.2s;
+
+      border: 1px solid transparent;
+    }
+
+    .button-primary {
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--purple)
+      );
+
+      color: white;
+
+      box-shadow:
+        0 12px 30px rgba(91, 92, 240, 0.25);
+    }
+
+    .button-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .button-secondary {
+      background: white;
+
+      border-color: var(--border);
+    }
+
+    .button-secondary:hover {
+      background: var(--surface-soft);
+    }
+
+    /* ===============================
+       HERO
+    =============================== */
+
+    .hero {
+      min-height: 720px;
+
+      display: grid;
+
+      grid-template-columns:
+        1.15fr
+        0.85fr;
+
+      gap: 70px;
+
+      align-items: center;
+
+      padding:
+        90px
+        0
+        80px;
+    }
+
+    .badge {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+
+      padding:
+        7px
+        12px;
+
+      margin-bottom: 24px;
+
+      background: var(--primary-soft);
+
+      color: var(--primary-dark);
+
+      border-radius: 100px;
+
+      font-size: 12px;
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.06em;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--primary);
+    }
+
+    .hero h1 {
+      font-size: clamp(
+        48px,
+        7vw,
+        78px
+      );
+
+      line-height: 0.99;
+
+      letter-spacing: -0.055em;
+
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--purple)
+      );
+
+      -webkit-background-clip: text;
+
+      color: transparent;
+    }
+
+    .hero-description {
+      max-width: 690px;
+
+      font-size: 18px;
+
+      color: var(--muted);
+
+      margin-bottom: 30px;
+    }
+
+    .hero-buttons {
+      display: flex;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      margin-bottom: 30px;
+    }
+
+    .hero-meta {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap:
+        10px
+        25px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .availability {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 8px;
+    }
+
+    .green-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 100%;
+
+      background: #10b981;
+    }
+
+    /* ===============================
+       HERO PROFILE CARD
+    =============================== */
+
+    .profile-card {
+      position: relative;
+
+      background: rgba(
+        255,
+        255,
+        255,
+        0.9
+      );
+
+      padding: 32px;
+
+      border-radius: 30px;
+
+      border:
+        1px solid
+        rgba(
+          255,
+          255,
+          255,
+          0.8
+        );
+
+      box-shadow: var(--shadow);
+
+      overflow: hidden;
+    }
+
+    .profile-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 200px;
+      height: 200px;
+
+      right: -70px;
+      top: -80px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(
+            124,
+            58,
+            237,
+            0.2
+          ),
+          transparent 65%
+        );
+    }
+
+    .profile-icon {
+      width: 90px;
+      height: 90px;
+
+      border-radius: 28px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 24px;
+
+      color: white;
+
+      font-size: 28px;
+      font-weight: 800;
+
+      background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--purple)
+      );
+
+      box-shadow:
+        0 15px 35px
+        rgba(91, 92, 240, 0.25);
+    }
+
+    .profile-card h3 {
+      font-size: 26px;
+
+      letter-spacing: -0.03em;
+
+      margin-bottom: 4px;
+    }
+
+    .profile-role {
+      color: var(--muted);
+
+      margin-bottom: 25px;
+    }
+
+    .stats {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 12px;
+    }
+
+    .stat {
+      background:
+        rgba(
+          248,
+          249,
+          252,
+          0.8
+        );
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 18px;
+
+      padding: 18px;
+    }
+
+    .stat strong {
+      display: block;
+
+      font-size: 21px;
+
+      margin-bottom: 4px;
+    }
+
+    .stat span {
+      color: var(--muted);
+
+      font-size: 12px;
+    }
+
+    /* ===============================
+       GENERAL SECTIONS
+    =============================== */
+
+    section {
+      padding:
+        85px
+        0;
+    }
+
+    .section-heading {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: flex-end;
+
+      gap: 40px;
+
+      margin-bottom: 38px;
+    }
+
+    .section-label {
+      color: var(--primary);
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.12em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+      font-size:
+        clamp(
+          32px,
+          4vw,
+          46px
+        );
+
+      line-height: 1.05;
+
+      letter-spacing: -0.045em;
+    }
+
+    .section-heading p {
+      max-width: 580px;
+
+      color: var(--muted);
+    }
+
+    /* ===============================
+       ABOUT
+    =============================== */
+
+    .about-grid {
+      display: grid;
+
+      grid-template-columns:
+        1.2fr
+        0.8fr;
+
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--surface);
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 24px;
+
+      padding: 30px;
+
+      box-shadow:
+        0 14px 40px
+        rgba(
+          15,
+          23,
+          42,
+          0.04
+        );
+    }
+
+    .card p {
+      color: var(--muted);
+
+      margin-bottom: 18px;
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .focus-list {
+      display: grid;
+
+      gap: 12px;
+    }
+
+    .focus-item {
+      display: flex;
+
+      gap: 14px;
+
+      background:
+        var(--surface-soft);
+
+      padding: 16px;
+
+      border-radius: 18px;
+    }
+
+    .focus-number {
+      min-width: 38px;
+      height: 38px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: white;
+
+      border:
+        1px solid
+        var(--border);
+
+      color: var(--primary);
+
+      font-weight: 800;
+
+      font-size: 13px;
+    }
+
+    .focus-item strong {
+      display: block;
+
+      margin-bottom: 3px;
+    }
+
+    .focus-item span {
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    /* ===============================
+       EXPERIENCE
+    =============================== */
+
+    .experience-list {
+      display: grid;
+
+      gap: 18px;
+    }
+
+    .experience-card {
+      display: grid;
+
+      grid-template-columns:
+        190px
+        1fr;
+
+      gap: 28px;
+
+      background: white;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 22px;
+
+      padding: 26px;
+
+      transition: 0.2s;
+    }
+
+    .experience-card:hover {
+      transform:
+        translateY(-3px);
+
+      box-shadow:
+        0 20px 55px
+        rgba(
+          15,
+          23,
+          42,
+          0.06
+        );
+    }
+
+    .experience-date {
+      font-size: 13px;
+
+      color: var(--muted);
+    }
+
+    .experience-date strong {
+      display: block;
+
+      color: var(--text);
+
+      font-size: 14px;
+
+      margin-bottom: 4px;
+    }
+
+    .company {
+      color: var(--primary);
+
+      font-weight: 700;
+
+      margin-bottom: 6px;
+    }
+
+    .experience-content h3 {
+      font-size: 21px;
+
+      letter-spacing: -0.025em;
+
+      margin-bottom: 8px;
+    }
+
+    .experience-content p {
+      color: var(--muted);
+    }
+
+    /* ===============================
+       SKILLS
+    =============================== */
+
+    .skills-container {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 11px;
+    }
+
+    .skill {
+      padding:
+        11px
+        16px;
+
+      border-radius: 100px;
+
+      background: white;
+
+      border:
+        1px solid
+        var(--border);
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+      color: #344054;
+    }
+
+    /* ===============================
+       EDUCATION
+    =============================== */
+
+    .education-grid {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 18px;
+    }
+
+    .education-card {
+      background: white;
+
+      border:
+        1px solid
+        var(--border);
+
+      padding: 26px;
+
+      border-radius: 22px;
+    }
+
+    .education-year {
+      font-size: 13px;
+
+      color: var(--primary);
+
+      font-weight: 800;
+
+      margin-bottom: 10px;
+    }
+
+    .education-card h3 {
+      font-size: 20px;
+
+      margin-bottom: 8px;
+    }
+
+    .education-card p {
+      color: var(--muted);
+    }
+
+    /* ===============================
+       CERTIFICATIONS
+    =============================== */
+
+    .certifications-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          2,
+          1fr
+        );
+
+      gap: 14px;
+    }
+
+    .certification {
+      display: flex;
+
+      gap: 13px;
+
+      align-items: flex-start;
+
+      padding: 19px;
+
+      background: white;
+
+      border:
+        1px solid
+        var(--border);
+
+      border-radius: 18px;
+    }
+
+    .cert-icon {
+      min-width: 35px;
+      height: 35px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background:
+        var(--primary-soft);
+
+      color: var(--primary);
+
+      font-weight: 800;
+    }
+
+    .certification strong {
+      font-size: 14px;
+
+      line-height: 1.4;
+    }
+
+    /* ===============================
+       CONTACT
+    =============================== */
+
+    .contact-card {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 55px;
+
+      border-radius: 32px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #312e81 60%,
+          #6d28d9
+        );
+
+      box-shadow:
+        0 30px 80px
+        rgba(
+          49,
+          46,
+          129,
+          0.25
+        );
+    }
+
+    .contact-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 300px;
+      height: 300px;
+
+      right: -90px;
+      top: -110px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(
+            255,
+            255,
+            255,
+            0.18
+          ),
+          transparent 65%
+        );
+    }
+
+    .contact-card h2 {
+      max-width: 720px;
+
+      font-size:
+        clamp(
+          34px,
+          5vw,
+          54px
+        );
+
+      line-height: 1.04;
+
+      letter-spacing: -0.045em;
+
+      margin-bottom: 18px;
+    }
+
+    .contact-card p {
+      max-width: 650px;
+
+      color:
+        rgba(
+          255,
+          255,
+          255,
+          0.75
+        );
+
+      margin-bottom: 30px;
+    }
+
+    .contact-buttons {
+      display: flex;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+
+      position: relative;
+
+      z-index: 2;
+    }
+
+    .contact-primary {
+      background: white;
+
+      color: #111827;
+    }
+
+    .contact-secondary {
+      border:
+        1px solid
+        rgba(
+          255,
+          255,
+          255,
+          0.3
+        );
+
+      color: white;
+    }
+
+    /* ===============================
+       FOOTER
+    =============================== */
+
+    footer {
+      padding:
+        35px
+        0
+        50px;
+
+      display: flex;
+
+      justify-content:
+        space-between;
+
+      flex-wrap: wrap;
+
+      gap: 20px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+    }
+
+    /* ===============================
+       RESPONSIVE
+    =============================== */
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns:
+          1fr;
+
+        min-height: auto;
+
+        padding-top: 65px;
+      }
+
+      .profile-card {
+        max-width: 620px;
+      }
+
+      .about-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .experience-card {
+        grid-template-columns:
+          1fr;
+      }
+
+      .education-grid {
+        grid-template-columns:
+          1fr;
+      }
+
+      .certifications-grid {
+        grid-template-columns:
+          1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width:
+          calc(
+            100% - 24px
+          );
+      }
+
+      nav {
+        height: 65px;
+      }
+
+      .hero {
+        padding:
+          50px
+          0
+          40px;
+      }
+
+      .hero h1 {
+        font-size: 47px;
+      }
+
+      section {
+        padding:
+          60px
+          0;
+      }
+
+      .section-heading {
+        flex-direction:
+          column;
+
+        align-items:
+          flex-start;
+      }
+
+      .stats {
+        grid-template-columns:
+          1fr;
+      }
+
+      .card,
+      .experience-card,
+      .education-card {
+        padding: 21px;
+      }
+
+      .contact-card {
+        padding:
+          34px
+          23px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ===========================
+       NAVBAR
+  ============================ -->
+
+  <header>
+
+    <nav class="container">
+
+      <a href="#home" class="logo">
+
+        <div class="logo-icon">
+          CD
+        </div>
+
+        <span>
+          Chesta Dashora
+        </span>
+
+      </a>
+
+      <div class="nav-links">
+
+        <a href="#about">
+          About
+        </a>
+
+        <a href="#experience">
+          Experience
+        </a>
+
+        <a href="#skills">
+          Skills
+        </a>
+
+        <a href="#education">
+          Education
+        </a>
+
+        <a href="#contact">
+          Contact
+        </a>
+
+      </div>
+
+    </nav>
+
+  </header>
+
+
+  <!-- ===========================
+       HERO
+  ============================ -->
+
+  <main id="home">
+
+    <div class="container hero">
+
+      <div>
+
+        <div class="badge">
+
+          <span class="badge-dot"></span>
+
+          Product · Program · Digital Transformation
+
+        </div>
+
+        <h1>
+
+          Building digital products with
+
+          <span class="gradient-text">
+            clarity, empathy & impact.
+          </span>
+
+        </h1>
+
+        <p class="hero-description">
+
+          I'm Chesta Dashora, a Product & Program professional working
+          at the intersection of fintech, banking, digital transformation,
+          business analysis and user-centric product thinking.
+
+        </p>
+
+        <div class="hero-buttons">
+
+          <a
+            href="#experience"
+            class="button button-primary"
+          >
+            View Experience
+          </a>
+
+          <a
+            href="mailto:dashorachesta@gmail.com"
+            class="button button-secondary"
+          >
+            Email Me
+          </a>
+
+        </div>
+
+        <div class="hero-meta">
+
+          <span class="availability">
+
+            <span class="green-dot"></span>
+
+            Bengaluru, India
+
+          </span>
+
+          <span>
+            CSPO & CSM Certified
+          </span>
+
+          <span>
+            MBA — IT Business Management
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- PROFILE CARD -->
+
+      <div class="profile-card">
+
+        <div class="profile-icon">
+          CD
+        </div>
+
+        <h3>
+          Chesta Dashora
+        </h3>
+
+        <div class="profile-role">
+          Manager — Product & Program
+          <br>
+          Digital Transformation
+        </div>
+
+        <div class="stats">
+
+          <div class="stat">
+
+            <strong>
+              4+ Years
+            </strong>
+
+            <span>
+              Product & Business Experience
+            </span>
+
+          </div>
+
+
+          <div class="stat">
+
+            <strong>
+              Fintech
+            </strong>
+
+            <span>
+              Banking & Digital Transformation
+            </span>
+
+          </div>
+
+
+          <div class="stat">
+
+            <strong>
+              UX First
+            </strong>
+
+            <span>
+              User Observation & Flow Refinement
+            </span>
+
+          </div>
+
+
+          <div class="stat">
+
+            <strong>
+              Cross-Functional
+            </strong>
+
+            <span>
+              Business · Engineering · QA
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===========================
+         ABOUT
+    ============================ -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="section-label">
+              About Me
+            </div>
+
+            <h2>
+              I like products that make sense to the people using them.
+            </h2>
+
+          </div>
+
+          <p>
+
+            My work combines product thinking,
+            on-ground user observation and
+            cross-functional execution with a growing
+            focus on design-led digital experiences.
+
+          </p>
+
+        </div>
+
+
+        <div class="about-grid">
+
+          <div class="card">
+
+            <p>
+
+              At Axis Bank's Digital Transformation
+              vertical, I am part of the team building
+              a sales application used by branch employees
+              across credit cards, lending, CRM and
+              nudge engines.
+
+            </p>
+
+            <p>
+
+              My approach goes beyond delivery.
+              When requirements come in, I explore
+              the complete product flow, challenge
+              assumptions and refine experiences
+              where the journey does not work well
+              for the end user.
+
+            </p>
+
+            <p>
+
+              During branch visits, I observe how
+              employees interact with the application
+              first-hand, identify friction points and
+              understand usage patterns that may not
+              surface through requirement documents.
+
+            </p>
+
+            <p>
+
+              I work closely with engineering and QA
+              teams to align technical feasibility,
+              review builds, support testing and ensure
+              what ultimately ships reflects the intended
+              user experience.
+
+            </p>
+
+          </div>
+
+
+          <div class="card">
+
+            <div class="focus-list">
+
+              <div class="focus-item">
+
+                <div class="focus-number">
+                  01
+                </div>
+
+                <div>
+
+                  <strong>
+                    Understand Users
+                  </strong>
+
+                  <span>
+
+                    Observe real user behaviour,
+                    friction points and usage patterns.
+
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="focus-item">
+
+                <div class="focus-number">
+                  02
+                </div>
+
+                <div>
+
+                  <strong>
+                    Think Product
+                  </strong>
+
+                  <span>
+
+                    Challenge assumptions and
+                    improve product flows before
+                    they reach users.
+
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="focus-item">
+
+                <div class="focus-number">
+                  03
+                </div>
+
+                <div>
+
+                  <strong>
+                    Execute
+                  </strong>
+
+                  <span>
+
+                    Bring business, engineering
+                    and QA teams together to
+                    deliver the intended outcome.
+
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===========================
+         EXPERIENCE
+    ============================ -->
+
+    <section id="experience">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="section-label">
+              Experience
+            </div>
+
+            <h2>
+              Where I've worked
+            </h2>
+
+          </div>
+
+          <p>
+
+            Experience across digital banking,
+            product delivery, technology programs
+            and business analysis.
+
+          </p>
+
+        </div>
+
+
+        <div class="experience-list">
+
+
+          <!-- AXIS MANAGER -->
+
+          <div class="experience-card">
+
+            <div class="experience-date">
+
+              <strong>
+                April 2024 — Present
+              </strong>
+
+              Bengaluru
+
+            </div>
+
+            <div class="experience-content">
+
+              <div class="company">
+                Axis Bank
+              </div>
+
+              <h3>
+                Manager — Product & Program
+              </h3>
+
+              <p>
+
+                Working within the Digital Transformation
+                vertical on banking products and internal
+                sales journeys across credit cards,
+                lending, CRM and nudge-led experiences.
+
+                My work spans product flow refinement,
+                business alignment, technical feasibility,
+                build reviews, testing coordination and
+                post-release improvement.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- AXIS DEPUTY MANAGER -->
+
+          <div class="experience-card">
+
+            <div class="experience-date">
+
+              <strong>
+                July 2022 — March 2024
+              </strong>
+
+              Bengaluru
+
+            </div>
+
+            <div class="experience-content">
+
+              <div class="company">
+                Axis Bank
+              </div>
+
+              <h3>
+                IT Product Associate — Deputy Manager
+              </h3>
+
+              <p>
+
+                Worked across technology and
+                product delivery within Axis Bank's
+                digital transformation ecosystem.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- HAWKSCODE -->
+
+          <div class="experience-card">
+
+            <div class="experience-date">
+
+              <strong>
+                June 2021 — September 2021
+              </strong>
+
+              Jaipur
+
+            </div>
+
+            <div class="experience-content">
+
+              <div class="company">
+                HawksCode
+              </div>
+
+              <h3>
+                Business Analyst
+              </h3>
+
+              <p>
+
+                Worked on business analysis,
+                requirement understanding and
+                translating business needs into
+                clear execution requirements.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- HCL -->
+
+          <div class="experience-card">
+
+            <div class="experience-date">
+
+              <strong>
+                June 2019 — July 2019
+              </strong>
+
+              Bengaluru
+
+            </div>
+
+            <div class="experience-content">
+
+              <div class="company">
+                HCL Technologies
+              </div>
+
+              <h3>
+                Business Analyst
+              </h3>
+
+              <p>
+
+                Contributed to growth management
+                for the TechBee Hiring Program.
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===========================
+         SKILLS
+    ============================ -->
+
+    <section id="skills">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="section-label">
+              Skills
+            </div>
+
+            <h2>
+              Core strengths
+            </h2>
+
+          </div>
+
+          <p>
+
+            A combination of product execution,
+            business analysis, digital transformation
+            and user-centered problem solving.
+
+          </p>
+
+        </div>
+
+
+        <div class="skills-container">
+
+          <span class="skill">
+            Product Management
+          </span>
+
+          <span class="skill">
+            Business Analysis
+          </span>
+
+          <span class="skill">
+            IT Business Analysis
+          </span>
+
+          <span class="skill">
+            Digital Transformation
+          </span>
+
+          <span class="skill">
+            Data Analysis
+          </span>
+
+          <span class="skill">
+            Product Thinking
+          </span>
+
+          <span class="skill">
+            User Journey Analysis
+          </span>
+
+          <span class="skill">
+            User Observation
+          </span>
+
+          <span class="skill">
+            Requirements Analysis
+          </span>
+
+          <span class="skill">
+            Cross-functional Collaboration
+          </span>
+
+          <span class="skill">
+            Fintech
+          </span>
+
+          <span class="skill">
+            Banking
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===========================
+         EDUCATION
+    ============================ -->
+
+    <section id="education">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="section-label">
+              Education
+            </div>
+
+            <h2>
+              Academic foundation
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="education-grid">
+
+
+          <div class="education-card">
+
+            <div class="education-year">
+
+              2020 — 2022
+
+            </div>
+
+            <h3>
+
+              MBA — Information Technology
+              Business Management
+
+            </h3>
+
+            <p>
+
+              SCIT — Symbiosis Centre for
+              Information Technology
+
+            </p>
+
+          </div>
+
+
+          <div class="education-card">
+
+            <div class="education-year">
+
+              2017 — 2020
+
+            </div>
+
+            <h3>
+
+              BBA — Business Administration
+              & Management
+
+            </h3>
+
+            <p>
+              JECRC University
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===========================
+         CERTIFICATIONS
+    ============================ -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <div>
+
+            <div class="section-label">
+              Certifications
+            </div>
+
+            <h2>
+              Continuous learning
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="certifications-grid">
+
+
+          <div class="certification">
+
+            <div class="cert-icon">
+              ✓
+            </div>
+
+            <strong>
+              CSPO & CSM Certified
+            </strong>
+
+          </div>
+
+
+          <div class="certification">
+
+            <div class="cert-icon">
+              ✓
+            </div>
+
+            <strong>
+              Generative AI for Product Managers
+            </strong>
+
+          </div>
+
+
+          <div class="certification">
+
+            <div class="cert-icon">
+              ✓
+            </div>
+
+            <strong>
+              Software Product Management Specialization
+            </strong>
+
+          </div>
+
+
+          <div class="certification">
+
+            <div class="cert-icon">
+              ✓
+            </div>
+
+            <strong>
+              Client Needs and Software Requirements
+            </strong>
+
+          </div>
+
+
+          <div class="certification">
+
+            <div class="cert-icon">
+              ✓
+            </div>
+
+            <strong>
+              The Complete SQL Bootcamp
+            </strong>
+
+          </div>
+
+
+          <div class="certification">
+
+            <div class="cert-icon">
+              ✓
+            </div>
+
+            <strong>
+              Information Security:
+              Context and Introduction
+            </strong>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===========================
+         CONTACT
+    ============================ -->
+
+    <section id="contact">
+
+      <div class="container">
+
+        <div class="contact-card">
+
+          <h2>
+
+            Let's build meaningful
+            digital products.
+
+          </h2>
+
+          <p>
+
+            I'm interested in conversations around
+            Product Management, UX, Digital Transformation,
+            Fintech, Banking and user-centered digital
+            experiences.
+
+          </p>
+
+
+          <div class="contact-buttons">
+
+
+            <a
+              href="mailto:dashorachesta@gmail.com"
+              class="button contact-primary"
+            >
+
+              Email Me
+
+            </a>
+
+
+            <a
+              href="https://www.linkedin.com/in/chesta-dashora-6942b2184"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button contact-secondary"
+            >
+
+              View LinkedIn
+
+            </a>
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ===========================
+       FOOTER
+  ============================ -->
+
+  <footer class="container">
+
+    <span>
+
+      © <span id="year"></span>
+      Chesta Dashora
+
+    </span>
+
+    <span>
+
+      Product · Program · Digital Transformation
+
+    </span>
+
+  </footer>
+
+
+  <script>
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+
+</body>
+</html>
