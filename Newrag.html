@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple RAG Simulator</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 0;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #94a3b8;
+      margin-bottom: 30px;
+    }
+
+    .pipeline {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+
+    .step {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .step.active {
+      border-color: #818cf8;
+      background: #312e81;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 20px;
+    }
+
+    .panel {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    textarea,
+    input,
+    select {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: white;
+    }
+
+    textarea {
+      min-height: 250px;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #6366f1;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4f46e5;
+    }
+
+    .result-section {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .result-section h3 {
+      margin-top: 0;
+      font-size: 15px;
+    }
+
+    .chunk {
+      background: #1e293b;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .vector {
+      color: #67e8f9;
+      font-family: monospace;
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    .score {
+      color: #86efac;
+      font-size: 12px;
+      margin-bottom: 5px;
+    }
+
+    .prompt {
+      white-space: pre-wrap;
+      font-family: monospace;
+      font-size: 12px;
+      background: #020617;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .answer {
+      background: #052e2b;
+      border: 1px solid #166534;
+      padding: 15px;
+      border-radius: 10px;
+      line-height: 1.6;
+    }
+
+    .note {
+      color: #94a3b8;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .pipeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>RAG Simulator</h1>
+
+    <div class="subtitle">
+      Learn how Retrieval-Augmented Generation works step by step.
+    </div>
+
+    <div class="pipeline">
+      <div class="step" id="step1">1. Data</div>
+      <div class="step" id="step2">2. Chunk</div>
+      <div class="step" id="step3">3. Embed</div>
+      <div class="step" id="step4">4. Retrieve</div>
+      <div class="step" id="step5">5. Prompt</div>
+      <div class="step" id="step6">6. Generate</div>
+    </div>
+
+    <div class="workspace">
+
+      <div class="panel">
+
+        <h2>Input</h2>
+
+        <label for="knowledge">Knowledge Base</label>
+
+        <textarea id="knowledge">
+Retrieval-Augmented Generation, also called RAG, combines information retrieval with generative AI.
+
+RAG does not usually train the language model on your private data. Instead, it retrieves relevant information at query time and gives it to the language model as context.
+
+Documents are first cleaned and divided into smaller sections called chunks.
+
+Each chunk is converted into an embedding. An embedding is a numerical representation of the meaning of text.
+
+Embeddings can be stored in a vector database.
+
+When a user asks a question, the question is also converted into an embedding.
+
+The system compares the query embedding with document embeddings to identify relevant chunks.
+
+The most relevant chunks are retrieved using semantic similarity search.
+
+A reranker may optionally reorder the retrieved chunks based on relevance.
+
+The system then combines the user query, system instructions and retrieved chunks into a prompt.
+
+The prompt is sent to a large language model, which generates the final response.
+        </textarea>
+
+        <label for="chunkSize">Chunk Size</label>
+
+        <select id="chunkSize">
+          <option value="25">25 words</option>
+          <option value="40" selected>40 words</option>
+          <option value="60">60 words</option>
+        </select>
+
+        <label for="topK">Top K</label>
+
+        <select id="topK">
+          <option value="2">2</option>
+          <option value="3" selected>3</option>
+          <option value="4">4</option>
+        </select>
+
+        <label for="query">User Query</label>
+
+        <input
+          id="query"
+          value="How does RAG retrieve relevant information?"
+        >
+
+        <button onclick="runRAG()">
+          Run RAG Simulation
+        </button>
+
+      </div>
+
+      <div class="panel">
+
+        <h2>RAG Process</h2>
+
+        <div id="output">
+          Run the simulator to see each step.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function setActive(stepNumber) {
+      var steps = document.querySelectorAll(".step");
+
+      steps.forEach(function(step) {
+        step.classList.remove("active");
+      });
+
+      for (var i = 1; i <= stepNumber; i++) {
+        document
+          .getElementById("step" + i)
+          .classList.add("active");
+      }
+    }
+
+
+    function cleanText(text) {
+      return text
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+
+    function createChunks(text, size) {
+      var words = text.split(" ");
+      var chunks = [];
+
+      for (var i = 0; i < words.length; i += size) {
+        var chunk = words
+          .slice(i, i + size)
+          .join(" ");
+
+        chunks.push(chunk);
+      }
+
+      return chunks;
+    }
+
+
+    function tokenize(text) {
+      return text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s]/g, "")
+        .split(/\s+/)
+        .filter(function(word) {
+          return word.length > 2;
+        });
+    }
+
+
+    function createFakeEmbedding(text) {
+      var words = tokenize(text);
+
+      var vector = [0, 0, 0, 0, 0];
+
+      words.forEach(function(word) {
+
+        var sum = 0;
+
+        for (var i = 0; i < word.length; i++) {
+          sum += word.charCodeAt(i);
+        }
+
+        for (var j = 0; j < vector.length; j++) {
+          vector[j] +=
+            ((sum * (j + 1)) % 100) / 100;
+        }
+
+      });
+
+      if (words.length === 0) {
+        return vector;
+      }
+
+      return vector.map(function(value) {
+        return Number(
+          (value / words.length).toFixed(2)
+        );
+      });
+    }
+
+
+    function similarity(query, chunk) {
+
+      var queryWords = tokenize(query);
+      var chunkWords = tokenize(chunk);
+
+      var matches = 0;
+
+      queryWords.forEach(function(word) {
+        if (chunkWords.includes(word)) {
+          matches++;
+        }
+      });
+
+      if (queryWords.length === 0) {
+        return 0;
+      }
+
+      return matches / queryWords.length;
+    }
+
+
+    function escapeHTML(text) {
+      var div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+
+    function runRAG() {
+
+      var knowledge =
+        document.getElementById("knowledge").value;
+
+      var query =
+        document.getElementById("query").value;
+
+      var chunkSize =
+        parseInt(
+          document.getElementById("chunkSize").value
+        );
+
+      var topK =
+        parseInt(
+          document.getElementById("topK").value
+        );
+
+
+      if (!knowledge.trim() || !query.trim()) {
+        alert("Please enter knowledge and a query.");
+        return;
+      }
+
+
+      var cleaned =
+        cleanText(knowledge);
+
+      setActive(1);
+
+
+      var chunks =
+        createChunks(cleaned, chunkSize);
+
+      setActive(2);
+
+
+      var embeddedChunks =
+        chunks.map(function(chunk, index) {
+
+          return {
+            id: index + 1,
+            text: chunk,
+            vector: createFakeEmbedding(chunk)
+          };
+
+        });
+
+      var queryVector =
+        createFakeEmbedding(query);
+
+      setActive(3);
+
+
+      var scoredChunks =
+        embeddedChunks.map(function(item) {
+
+          return {
+            id: item.id,
+            text: item.text,
+            vector: item.vector,
+            score: similarity(query, item.text)
+          };
+
+        });
+
+
+      scoredChunks.sort(function(a, b) {
+        return b.score - a.score;
+      });
+
+
+      var retrieved =
+        scoredChunks.slice(0, topK);
+
+      setActive(4);
+
+
+      var context =
+        retrieved.map(function(item) {
+          return item.text;
+        }).join("\n\n");
+
+
+      var finalPrompt =
+        "SYSTEM:\n" +
+        "Answer using only the retrieved context.\n\n" +
+
+        "RETRIEVED CONTEXT:\n" +
+        context +
+        "\n\n" +
+
+        "USER QUERY:\n" +
+        query;
+
+
+      setActive(5);
+
+
+      var answer =
+        createAnswer(query, retrieved);
+
+      setActive(6);
+
+
+      var html = "";
+
+
+      html +=
+        '<div class="result-section">' +
+        "<h3>1. Cleaned Data</h3>" +
+        "<div>" +
+        escapeHTML(cleaned.substring(0, 400)) +
+        "</div>" +
+        '<div class="note">' +
+        "The document is cleaned before processing." +
+        "</div>" +
+        "</div>";
+
+
+      html +=
+        '<div class="result-section">' +
+        "<h3>2. Chunks</h3>";
+
+
+      chunks.forEach(function(chunk, index) {
+
+        html +=
+          '<div class="chunk">' +
+          "<strong>Chunk " +
+          (index + 1) +
+          "</strong><br>" +
+          escapeHTML(chunk) +
+          "</div>";
+
+      });
+
+
+      html += "</div>";
+
+
+      html +=
+        '<div class="result-section">' +
+        "<h3>3. Embeddings</h3>";
+
+
+      embeddedChunks
+        .slice(0, 5)
+        .forEach(function(item) {
+
+          html +=
+            '<div class="chunk">' +
+            "<strong>Chunk " +
+            item.id +
+            "</strong>" +
+            '<div class="vector">' +
+            "[" +
+            item.vector.join(", ") +
+            "]" +
+            "</div>" +
+            "</div>";
+
+        });
+
+
+      html +=
+        '<div class="chunk">' +
+        "<strong>Query Embedding</strong>" +
+        '<div class="vector">' +
+        "[" +
+        queryVector.join(", ") +
+        "]" +
+        "</div>" +
+        "</div>";
+
+
+      html +=
+        '<div class="note">' +
+        "These are simplified fake vectors for learning only." +
+        "</div>" +
+        "</div>";
+
+
+      html +=
+        '<div class="result-section">' +
+        "<h3>4. Retrieval</h3>";
+
+
+      retrieved.forEach(function(item, index) {
+
+        html +=
+          '<div class="chunk">' +
+          '<div class="score">' +
+          "Rank " +
+          (index + 1) +
+          " | Relevance: " +
+          Math.round(item.score * 100) +
+          "%" +
+          "</div>" +
+          escapeHTML(item.text) +
+          "</div>";
+
+      });
+
+
+      html +=
+        '<div class="note">' +
+        "In a real RAG system, retrieval is usually done using vector similarity search." +
+        "</div>" +
+        "</div>";
+
+
+      html +=
+        '<div class="result-section">' +
+        "<h3>5. Final Prompt</h3>" +
+        '<div class="prompt">' +
+        escapeHTML(finalPrompt) +
+        "</div>" +
+        "</div>";
+
+
+      html +=
+        '<div class="result-section">' +
+        "<h3>6. Simulated LLM Answer</h3>" +
+        '<div class="answer">' +
+        escapeHTML(answer) +
+        "</div>" +
+        '<div class="note">' +
+        "This response is simulated locally. No real LLM API is used." +
+        "</div>" +
+        "</div>";
+
+
+      document.getElementById("output").innerHTML =
+        html;
+    }
+
+
+    function createAnswer(query, retrieved) {
+
+      var lowerQuery =
+        query.toLowerCase();
+
+
+      if (
+        lowerQuery.includes("retrieve") ||
+        lowerQuery.includes("relevant")
+      ) {
+
+        return (
+          "RAG retrieves relevant information by converting the user query into an embedding and comparing it with document chunk embeddings. The system selects the most relevant chunks using semantic similarity search and provides them to the language model as context."
+        );
+      }
+
+
+      if (
+        lowerQuery.includes("embedding")
+      ) {
+
+        return (
+          "An embedding is a numerical representation of text. In RAG, both the document chunks and user query are converted into embeddings so their meanings can be compared mathematically."
+        );
+      }
+
+
+      if (
+        lowerQuery.includes("chunk")
+      ) {
+
+        return (
+          "Chunking means dividing a large document into smaller pieces. Each chunk can then be embedded and retrieved separately."
+        );
+      }
+
+
+      if (
+        lowerQuery.includes("rerank")
+      ) {
+
+        return (
+          "Reranking is an optional step where retrieved chunks are reviewed again and reordered according to relevance before being sent to the language model."
+        );
+      }
+
+
+      if (retrieved.length > 0) {
+
+        return (
+          "The system retrieved the most relevant information from the knowledge base and would now give this context to the language model to generate a grounded answer."
+        );
+      }
+
+
+      return (
+        "The system could not find enough relevant information in the knowledge base."
+      );
+    }
+
+  </script>
+
+</body>
+</html>
